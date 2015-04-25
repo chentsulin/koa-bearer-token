@@ -1,3 +1,7 @@
 # koa-bearer-token
 
-> WIP
+> koa bearer token parser middleware
+
+
+
+WIP
