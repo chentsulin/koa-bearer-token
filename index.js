@@ -18,14 +18,25 @@ module.exports = function(opts) {
     var header = r.header
 
     if (query && query[queryKey]) {
-
+      token = query[queryKey]
     }
 
     if (body && body[bodyKey]) {
-
+      if (token) {
+        err = true
+      }
+      token = body[bodyKey]
     }
 
-    if (true) {};
+    if (header && header.authorization) {
+      var parts = header.authorization.split(' ')
+      if (parts.length === 2 && parts[0] === headerKey) {
+        if (token) {
+          err = true
+        }
+        token = parts[1]
+      }
+    }
 
     // RFC6750 states the access_token MUST NOT be provided
     // in more than one place in a single request.
