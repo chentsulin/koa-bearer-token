@@ -41,7 +41,9 @@ module.exports = function(opts) {
     // RFC6750 states the access_token MUST NOT be provided
     // in more than one place in a single request.
     if (err) {
-      throw new Error()
+      this.throw(400, 'token_invalid', {
+        message: 'access_token MUST NOT be provided in more than one place'
+      })
     } else {
       r[reqKey] = token
       yield next
