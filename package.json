@@ -1,7 +1,7 @@
 {
   "name": "koa-bearer-token",
   "version": "0.1.0",
-  "description": "koa bearer token parser middleware",
+  "description": "Bearer token parser middleware for koa",
   "license": "MIT",
   "repository": "chentsulin/koa-bearer-token",
   "author": {

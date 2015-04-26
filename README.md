@@ -4,7 +4,7 @@
 [![Build Status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
 
-> koa bearer token parser middleware
+> Bearer token parser middleware for koa
 
 ## Install
 
@@ -28,6 +28,29 @@ app.use(bearerToken())
 app.use(function *() {
   // this.request.token
 })
+```
+
+#### Provide in header
+
+`Authorization: Bearer <token>`
+
+#### Provide in query
+
+`?access_token=<token>`
+
+#### Provide in body
+
+`access_token=<token>`
+
+## Customize
+
+```js
+app.use(bearerToken({
+  bodyKey: 'access_token',
+  queryKey: 'access_token',
+  headerKey: 'Bearer',
+  reqKey: 'token'
+}))
 ```
 
 ## License
