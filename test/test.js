@@ -2,6 +2,7 @@ var bearerToken = require('../')
 var request = require('supertest')
 var expect = require('chai').expect
 var koa = require('koa')
+var bodyParser = require('koa-bodyparser')
 var app
 
 var token = '1234567890abcdefghijk'
@@ -11,6 +12,7 @@ describe('koa-bearer-token', function() {
   beforeEach(function() {
     app = koa()
 
+    app.use(bodyParser())
     app.use(bearerToken())
 
     app.use(function *() {
