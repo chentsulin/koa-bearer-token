@@ -6,6 +6,8 @@
 
 > Bearer token parser middleware for koa
 
+Inspired by [express-bearer-token](https://www.npmjs.com/package/express-bearer-token)
+
 ## Install
 
 ```sh
@@ -54,6 +56,7 @@ app.use(bearerToken({
 ```
 
 ## License
+
 MIT © [C. T. Lin](https://github.com/chentsulin)
 
 [npm-image]: https://img.shields.io/npm/v/koa-bearer-token.svg?style=flat-square

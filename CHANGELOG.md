@@ -3,3 +3,8 @@
 ## Features
 
 - **Implement:** for query, body, header.
+
+# 0.1.1 (2015.4.27)
+
+- **Add tests**
+- **Update Readme**
