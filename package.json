@@ -1,6 +1,6 @@
 {
   "name": "koa-bearer-token",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Bearer token parser middleware for koa",
   "license": "MIT",
   "repository": "chentsulin/koa-bearer-token",
@@ -17,8 +17,7 @@
     "index.js"
   ],
   "scripts": {
-    "test": "mocha --harmony",
-    "test-travis": "node --harmony node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --harmony --report lcovonly -- --reporter dot"
+    "test": "mocha --harmony-generators"
   },
   "bugs": {
     "url": "https://github.com/chentsulin/koa-bearer-token/issues"
