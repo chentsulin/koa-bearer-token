@@ -1,6 +1,5 @@
 var bearerToken = require('../')
 var request = require('supertest')
-var expect = require('chai').expect
 var koa = require('koa')
 var bodyParser = require('koa-bodyparser')
 var app
