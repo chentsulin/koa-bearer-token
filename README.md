@@ -63,7 +63,7 @@ MIT © [C. T. Lin](https://github.com/chentsulin)
 
 [npm-image]: https://img.shields.io/npm/v/koa-bearer-token.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/koa-bearer-token
-[travis-image]: https://travis-ci.org/chentsulin/koa-bearer-token.svg
+[travis-image]: https://travis-ci.org/chentsulin/koa-bearer-token.svg?branch=master
 [travis-url]: https://travis-ci.org/chentsulin/koa-bearer-token
 [codeclimate-image]: https://img.shields.io/codeclimate/github/chentsulin/koa-bearer-token.svg?style=flat-square
 [codeclimate-url]: https://codeclimate.com/github/chentsulin/koa-bearer-token
