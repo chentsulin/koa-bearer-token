@@ -10,6 +10,13 @@
 
 Inspired by [express-bearer-token](https://www.npmjs.com/package/express-bearer-token)
 
+## Compatibility table
+
+| koa version | koa-bearer-token version |
+|:-----------:|:------------------------:|
+| `<2`        | `0.x.x`                  |
+| `2`         | `1.x.x`                  |
+
 ## Install
 
 ```sh
@@ -21,17 +28,20 @@ $ npm install koa-bearer-token
 Use with `koa-bodyparser`
 
 ```js
-var koa = require('koa')
-var app = koa()
-var bodyParser = require('koa-bodyparser');
-var bearerToken = require('koa-bearer-token')
+const Koa = require('koa')
+const bodyParser = require('koa-bodyparser');
+const bearerToken = require('koa-bearer-token')
+
+const app = new Koa()
 
 app.use(bodyParser())
 app.use(bearerToken())
 
-app.use(function *() {
-  // this.request.token
+app.use(function (ctx) {
+  // ctx.request.token
 })
+
+app.listen(3000)
 ```
 
 #### Provide in header

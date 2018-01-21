@@ -1,3 +1,9 @@
+# 1.0.0 (2018.1.21)
+- Compatibility with Koa@2 was added
+- Dependencies were updated
+- A little refactoring was made
+- Makefile was replaced with npm scripts 
+
 # 0.1.2 (2015.4.27)
 
 - **Fix tests config**

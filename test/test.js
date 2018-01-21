@@ -1,74 +1,58 @@
-var bearerToken = require('../')
-var request = require('supertest')
-var koa = require('koa')
-var bodyParser = require('koa-bodyparser')
-var app
 
-var token = '1234567890abcdefghijk'
+const assert = require('assert')
+const bearerToken = require('../')
+const request = require('supertest')
+const Koa = require('koa')
+const bodyParser = require('koa-bodyparser')
 
+const token = '1234567890abcdefghijk'
 
 describe('koa-bearer-token', function() {
+  let app
+  let server
+
   beforeEach(function() {
-    app = koa()
+    app = new Koa()
 
     app.use(bodyParser())
     app.use(bearerToken())
 
-    app.use(function *() {
-      console.log('this.request.token', this.request.token)
-      if (this.request.token) {
-        this.body = this.request.token
-      } else {
-        this.body = 'undefined'
-      }
+    app.use(function (ctx) {
+      console.log('ctx.request.token', ctx.request.token)
+      ctx.body = ctx.request.token
     })
+
+    server = app.listen()
+  })
+  afterEach(function (done) {
+    server.close(done)
   })
 
-  it('token should be undefined when no token provided', function(done) {
-
-    request(app.listen())
-    .get('/')
-    .expect(function(res) {
-      if (res.text !== 'undefined') return 'res text !== undefined'
-    })
-    .end(done)
-
+  it('token should be undefined when no token provided', function() {
+    return request(server)
+      .get('/')
+      .then(res => assert.strictEqual(res.text, ''))
   })
 
-  it('token can be provided in header', function(done) {
-
-    request(app.listen())
-    .get('/')
-    .set('Authorization', 'Bearer ' + token)
-    .expect(function(res) {
-      if (res.text !== token) return 'res text !== token'
-    })
-    .end(done)
-
+  it('token can be provided in header', function() {
+    return request(server)
+      .get('/')
+      .set('Authorization', 'Bearer ' + token)
+      .then(res => assert.strictEqual(res.text, token))
   })
 
-  it('token can be provided in query', function(done) {
-
-    request(app.listen())
-    .get('/')
-    .query( { access_token: token })
-    .expect(function(res) {
-      if (res.text !== token) return 'res body !== token'
-    })
-    .end(done)
-
+  it('token can be provided in query', function() {
+    return request(server)
+      .get('/')
+      .query({ access_token: token })
+      .then(res => assert.strictEqual(res.text, token))
   })
 
-  it('token can be provided in body', function(done) {
-
-    request(app.listen())
-    .post('/')
-    .send({ access_token: token })
-    .expect(function(res) {
-      if (res.text !== token) return 'res text !== token'
-    })
-    .end(done)
-
+  it('token can be provided in body', function() {
+    return request(server)
+      .post('/')
+      .send({ access_token: token })
+      .then(res => assert.strictEqual(res.text, token))
   })
 
 })
