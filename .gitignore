@@ -1,15 +1,26 @@
-# Sublime Project
-.project
+# Ignore the compiled output.
+dist/
+website/build
+
+# TypeScript incremental compilation cache
+*.tsbuildinfo
 
 # Logs
 logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Dependency directory
-# Commenting this out is preferred by some people, see
-# https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
-node_modules
-package-lock.json
+# Coverage (from Jest)
+coverage/
 
-# Code coverage
-coverage
+# JUnit Reports (used mainly in CircleCI)
+reports/
+junit.xml
+
+# Node modules
+node_modules/
+
+# Mac OS
+.DS_Store
