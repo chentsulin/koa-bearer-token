@@ -10,7 +10,7 @@
     "url": "https://github.com/chentsulin"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "files": [
     "index.js"
