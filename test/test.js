@@ -18,7 +18,6 @@ describe('koa-bearer-token', function() {
     app.use(bearerToken())
 
     app.use(function (ctx) {
-      console.log('ctx.request.token', ctx.request.token)
       ctx.body = ctx.request.token
     })
 
