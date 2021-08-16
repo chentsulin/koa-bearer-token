@@ -16,7 +16,9 @@
     "index.js"
   ],
   "scripts": {
-    "test": "mocha",
+    "lint": "eslint .",
+    "test": "npm run lint && npm run testonly",
+    "testonly": "mocha",
     "test-cov": "node node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
     "test-travis": "node node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot"
   },
@@ -32,6 +34,9 @@
     "oauth"
   ],
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.0",
     "istanbul-harmony": "^0.3.12",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
