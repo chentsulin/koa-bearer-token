@@ -4,7 +4,6 @@
 [![Build Status][travis-image]][travis-url]
 [![Quality][codeclimate-image]][codeclimate-url]
 [![Test coverage][coveralls-image]][coveralls-url]
-[![Dependency Status][david_img]][david_site]
 
 > Bearer token parser middleware for koa
 
@@ -79,5 +78,3 @@ MIT © [C. T. Lin](https://github.com/chentsulin)
 [codeclimate-url]: https://codeclimate.com/github/chentsulin/koa-bearer-token
 [coveralls-image]: https://img.shields.io/coveralls/chentsulin/koa-bearer-token.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/chentsulin/koa-bearer-token
-[david_img]: https://img.shields.io/david/chentsulin/koa-bearer-token.svg
-[david_site]: https://david-dm.org/chentsulin/koa-bearer-token
