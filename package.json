@@ -16,8 +16,8 @@
     "lint": "eslint .",
     "prepare": "husky install",
     "test": "npm run lint && npm run testonly",
-    "testonly": "mocha",
-    "testonly:cov": "node node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot",
+    "testonly": "jest",
+    "testonly:cov": "jest --coverage",
     "prettier": "prettier --write --list-different .",
     "prettier:check": "prettier --check ."
   },
@@ -27,11 +27,10 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.0",
     "husky": "^7.0.1",
-    "istanbul-harmony": "^0.3.12",
+    "jest": "^27.0.6",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
     "lint-staged": "^11.1.2",
-    "mocha": "^9.0.3",
     "prettier": "^2.3.2",
     "prettier-package-json": "^2.6.0",
     "supertest": "^6.1.6"

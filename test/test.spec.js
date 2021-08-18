@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const request = require('supertest');
@@ -26,7 +24,7 @@ describe('koa-bearer-token', () => {
     const app = setup();
     const res = await request(app.callback()).get('/');
 
-    assert.strictEqual(res.text, '');
+    expect(res.text).toBe('');
   });
 
   it('token can be provided in header', async () => {
@@ -35,7 +33,7 @@ describe('koa-bearer-token', () => {
       .get('/')
       .set('Authorization', `Bearer ${token}`);
 
-    assert.strictEqual(res.text, token);
+    expect(res.text).toBe(token);
   });
 
   it('token can be provided in query', async () => {
@@ -44,7 +42,7 @@ describe('koa-bearer-token', () => {
       .get('/')
       .query({ access_token: token });
 
-    assert.strictEqual(res.text, token);
+    expect(res.text).toBe(token);
   });
 
   it('token can be provided in body', async () => {
@@ -53,6 +51,6 @@ describe('koa-bearer-token', () => {
       .post('/')
       .send({ access_token: token });
 
-    assert.strictEqual(res.text, token);
+    expect(res.text).toBe(token);
   });
 });
