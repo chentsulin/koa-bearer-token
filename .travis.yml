@@ -4,5 +4,5 @@ node_js:
   - '12'
   - '14'
   - '16'
-script: 'npm run-script test-travis'
+script: 'npm run-script testonly:cov'
 after_script: 'npm install coveralls@2 && cat ./coverage/lcov.info | coveralls'

@@ -55,7 +55,7 @@ jobs:
         run: npm ci
 
       - name: Run tests and measure code coverage
-        run: npm run testonly:cover
+        run: npm run testonly:cov
 
   test:
     name: Run tests on Node v${{ matrix.node_version_to_setup }}
