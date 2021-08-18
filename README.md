@@ -1,9 +1,8 @@
 # koa-bearer-token
 
-[![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Quality][codeclimate-image]][codeclimate-url]
-[![Test coverage][coveralls-image]][coveralls-url]
+[![npm version](https://badge.fury.io/js/koa-bearer-token.svg)](https://npmjs.org/package/koa-bearer-token)
+[![Build Status](https://github.com/chentsulin/koa-bearer-token/workflows/CI/badge.svg?branch=master)](https://github.com/chentsulin/koa-bearer-token/actions?query=branch%3Amaster)
+[![Coverage Status](https://coveralls.io/repos/github/chentsulin/koa-bearer-token/badge.svg?branch=master)](https://coveralls.io/r/chentsulin/koa-bearer-token?branch=master)
 
 > Bearer token parser middleware for koa
 
@@ -43,19 +42,19 @@ app.use(function (ctx) {
 app.listen(3000);
 ```
 
-#### Provide in header
+#### Token in `headers`
 
 `Authorization: Bearer <token>`
 
-#### Provide in query
+#### Token in `query`
 
 `?access_token=<token>`
 
-#### Provide in body
+#### Token in `body`
 
 `access_token=<token>`
 
-## Customize
+## Customization
 
 ```js
 app.use(
@@ -71,12 +70,3 @@ app.use(
 ## License
 
 MIT © [C. T. Lin](https://github.com/chentsulin)
-
-[npm-image]: https://img.shields.io/npm/v/koa-bearer-token.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/koa-bearer-token
-[travis-image]: https://travis-ci.org/chentsulin/koa-bearer-token.svg?branch=master
-[travis-url]: https://travis-ci.org/chentsulin/koa-bearer-token
-[codeclimate-image]: https://img.shields.io/codeclimate/github/chentsulin/koa-bearer-token.svg?style=flat-square
-[codeclimate-url]: https://codeclimate.com/github/chentsulin/koa-bearer-token
-[coveralls-image]: https://img.shields.io/coveralls/chentsulin/koa-bearer-token.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/chentsulin/koa-bearer-token
