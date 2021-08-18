@@ -8,46 +8,51 @@ const bearerToken = require('..');
 
 const token = '1234567890abcdefghijk';
 
+function setup() {
+  const app = new Koa();
+
+  app.use(bodyParser());
+  app.use(bearerToken());
+
+  app.use((ctx) => {
+    ctx.body = ctx.request.token;
+  });
+
+  return app;
+}
+
 describe('koa-bearer-token', () => {
-  let app;
-  let server;
+  it('token should be undefined when no token provided', async () => {
+    const app = setup();
+    const res = await request(app.callback()).get('/');
 
-  beforeEach(() => {
-    app = new Koa();
-
-    app.use(bodyParser());
-    app.use(bearerToken());
-
-    app.use((ctx) => {
-      ctx.body = ctx.request.token;
-    });
-
-    server = app.listen();
-  });
-  afterEach((done) => {
-    server.close(done);
+    assert.strictEqual(res.text, '');
   });
 
-  it('token should be undefined when no token provided', () =>
-    request(server)
+  it('token can be provided in header', async () => {
+    const app = setup();
+    const res = await request(app.callback())
       .get('/')
-      .then((res) => assert.strictEqual(res.text, '')));
+      .set('Authorization', `Bearer ${token}`);
 
-  it('token can be provided in header', () =>
-    request(server)
+    assert.strictEqual(res.text, token);
+  });
+
+  it('token can be provided in query', async () => {
+    const app = setup();
+    const res = await request(app.callback())
       .get('/')
-      .set('Authorization', `Bearer ${token}`)
-      .then((res) => assert.strictEqual(res.text, token)));
+      .query({ access_token: token });
 
-  it('token can be provided in query', () =>
-    request(server)
-      .get('/')
-      .query({ access_token: token })
-      .then((res) => assert.strictEqual(res.text, token)));
+    assert.strictEqual(res.text, token);
+  });
 
-  it('token can be provided in body', () =>
-    request(server)
+  it('token can be provided in body', async () => {
+    const app = setup();
+    const res = await request(app.callback())
       .post('/')
-      .send({ access_token: token })
-      .then((res) => assert.strictEqual(res.text, token)));
+      .send({ access_token: token });
+
+    assert.strictEqual(res.text, token);
+  });
 });
