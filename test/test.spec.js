@@ -28,22 +28,26 @@ describe('koa-bearer-token', () => {
     server.close(done);
   });
 
-  it('token should be undefined when no token provided', () => request(server)
-    .get('/')
-    .then((res) => assert.strictEqual(res.text, '')));
+  it('token should be undefined when no token provided', () =>
+    request(server)
+      .get('/')
+      .then((res) => assert.strictEqual(res.text, '')));
 
-  it('token can be provided in header', () => request(server)
-    .get('/')
-    .set('Authorization', `Bearer ${token}`)
-    .then((res) => assert.strictEqual(res.text, token)));
+  it('token can be provided in header', () =>
+    request(server)
+      .get('/')
+      .set('Authorization', `Bearer ${token}`)
+      .then((res) => assert.strictEqual(res.text, token)));
 
-  it('token can be provided in query', () => request(server)
-    .get('/')
-    .query({ access_token: token })
-    .then((res) => assert.strictEqual(res.text, token)));
+  it('token can be provided in query', () =>
+    request(server)
+      .get('/')
+      .query({ access_token: token })
+      .then((res) => assert.strictEqual(res.text, token)));
 
-  it('token can be provided in body', () => request(server)
-    .post('/')
-    .send({ access_token: token })
-    .then((res) => assert.strictEqual(res.text, token)));
+  it('token can be provided in body', () =>
+    request(server)
+      .post('/')
+      .send({ access_token: token })
+      .then((res) => assert.strictEqual(res.text, token)));
 });

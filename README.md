@@ -12,9 +12,9 @@ Inspired by [express-bearer-token](https://www.npmjs.com/package/express-bearer-
 ## Compatibility table
 
 | koa version | koa-bearer-token version |
-|:-----------:|:------------------------:|
-| `<2`        | `0.x.x`                  |
-| `2`         | `1.x.x`                  |
+| :---------: | :----------------------: |
+|    `<2`     |         `0.x.x`          |
+|     `2`     |         `1.x.x`          |
 
 ## Install
 
@@ -27,20 +27,20 @@ $ npm install koa-bearer-token
 Use with `koa-bodyparser`
 
 ```js
-const Koa = require('koa')
+const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
-const bearerToken = require('koa-bearer-token')
+const bearerToken = require('koa-bearer-token');
 
-const app = new Koa()
+const app = new Koa();
 
-app.use(bodyParser())
-app.use(bearerToken())
+app.use(bodyParser());
+app.use(bearerToken());
 
 app.use(function (ctx) {
   // ctx.request.token
-})
+});
 
-app.listen(3000)
+app.listen(3000);
 ```
 
 #### Provide in header
@@ -58,12 +58,14 @@ app.listen(3000)
 ## Customize
 
 ```js
-app.use(bearerToken({
-  bodyKey: 'access_token',
-  queryKey: 'access_token',
-  headerKey: 'Bearer',
-  reqKey: 'token'
-}))
+app.use(
+  bearerToken({
+    bodyKey: 'access_token',
+    queryKey: 'access_token',
+    headerKey: 'Bearer',
+    reqKey: 'token',
+  }),
+);
 ```
 
 ## License
