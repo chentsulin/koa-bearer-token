@@ -21,6 +21,7 @@ Per [RFC6750](https://datatracker.ietf.org/doc/html/rfc6750) this module will at
 - The key `access_token` in the request body.
 - The key `access_token` in the request query params.
 - The value from the header `Authorization: Bearer <token>`.
+- (Optional) Get a token from cookies header with key `access_token`.
 
 If a token is found, it will be stored on `ctx.request.token`. If one has been provided in more than one location, this will abort the request immediately by sending code 400 (per [RFC6750]).
 
@@ -50,6 +51,22 @@ app.use(
     queryKey: 'access_token',
     headerKey: 'Bearer',
     reqKey: 'token',
+  }),
+);
+```
+
+Get token from cookie key (it can be signed or not)
+
+**Warning**: by **NOT** passing `{ signed: true }` you are accepting a non signed cookie and an attacker might spoof the cookies. so keep in mind to use signed cookies
+
+```js
+app.use(
+  bearerToken({
+    cookie: {
+      signed: true, // if passed true you must pass secret otherwise will throw error
+      secret: 'YOUR_APP_SECRET',
+      key: 'access_token', // default value
+    },
   }),
 );
 ```

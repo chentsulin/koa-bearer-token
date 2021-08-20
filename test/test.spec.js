@@ -1,10 +1,12 @@
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const request = require('supertest');
+const cookie = require('cookie-signature');
 
 const bearerToken = require('..');
 
 const token = '1234567890abcdefghijk';
+const secret = 'SUPER_SECRET';
 
 function setup(options) {
   const app = new Koa();
@@ -108,7 +110,36 @@ it('finds a bearer token in headers under "authorization: <anykey>" and sets it 
   expect(context.request.token).toBe(token);
 });
 
-it('finds a bearer token and sets it to req[<anykey>]', async () => {
+it('finds a bearer token in header SIGNED cookies[<anykey>] and sets it to req.token', async () => {
+  const app = setup({ cookie: { key: 'test', signed: true, secret } });
+
+  let context;
+  app.use((ctx) => {
+    context = ctx;
+  });
+
+  // simulate the res.cookie signed prefix 's:'
+  const signedCookie = encodeURI(`s:${cookie.sign(token, secret)}`);
+
+  await request(app.callback()).get('/').set('Cookie', `test=${signedCookie};`);
+
+  expect(context.request.token).toBe(token);
+});
+
+it('finds a bearer token in header NON SIGNED cookies[<anykey>] and sets it to request.token', async () => {
+  const app = setup({ cookie: { key: 'test' } });
+
+  let context;
+  app.use((ctx) => {
+    context = ctx;
+  });
+
+  await request(app.callback()).get('/').set('Cookie', `test=${token};`);
+
+  expect(context.request.token).toBe(token);
+});
+
+it('finds a bearer token and sets it to request[<anykey>]', async () => {
   const app = setup({ reqKey: 'test' });
 
   let context;

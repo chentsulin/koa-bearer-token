@@ -21,7 +21,12 @@
     "prettier": "prettier --write --list-different .",
     "prettier:check": "prettier --check ."
   },
+  "dependencies": {
+    "cookie": "^0.4.1",
+    "cookie-parser": "^1.4.5"
+  },
   "devDependencies": {
+    "cookie-signature": "^1.1.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
