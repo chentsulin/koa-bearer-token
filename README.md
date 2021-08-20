@@ -8,22 +8,21 @@
 
 Inspired by [express-bearer-token](https://www.npmjs.com/package/express-bearer-token)
 
-## Compatibility table
-
-| koa version | koa-bearer-token version |
-| :---------: | :----------------------: |
-|    `<2`     |         `0.x.x`          |
-|     `2`     |         `1.x.x`          |
-
-## Install
+## Installation
 
 ```sh
 $ npm install koa-bearer-token
 ```
 
-## Usage
+## What?
 
-Use with `koa-bodyparser`
+Per [RFC6750](https://datatracker.ietf.org/doc/html/rfc6750) this module will attempt to extract a bearer token from a request from these locations:
+
+- The key `access_token` in the request body.
+- The key `access_token` in the request query params.
+- The value from the header `Authorization: Bearer <token>`.
+
+If a token is found, it will be stored on `ctx.request.token`. If one has been provided in more than one location, this will abort the request immediately by sending code 400 (per [RFC6750]).
 
 ```js
 const Koa = require('koa');
@@ -35,26 +34,14 @@ const app = new Koa();
 app.use(bodyParser());
 app.use(bearerToken());
 
-app.use(function (ctx) {
+app.use((ctx) => {
   // ctx.request.token
 });
 
 app.listen(3000);
 ```
 
-#### Token in `headers`
-
-`Authorization: Bearer <token>`
-
-#### Token in `query`
-
-`?access_token=<token>`
-
-#### Token in `body`
-
-`access_token=<token>`
-
-## Customization
+For APIs which are not compliant with [RFC6750], the key for the token in each location is customizable, as is the key the token is bound to on the request (default configuration shown):
 
 ```js
 app.use(
@@ -66,6 +53,13 @@ app.use(
   }),
 );
 ```
+
+## Compatibility table
+
+| koa version | koa-bearer-token version |
+| :---------: | :----------------------: |
+|    `<2`     |         `0.x.x`          |
+|     `2`     |         `1.x.x`          |
 
 ## License
 
