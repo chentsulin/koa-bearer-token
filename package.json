@@ -9,10 +9,14 @@
   "bugs": {
     "url": "https://github.com/chentsulin/koa-bearer-token/issues"
   },
+  "main": "lib/index.js",
   "files": [
     "index.js"
   ],
   "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "check": "tsc --noEmit",
+    "clean": "rimraf lib",
     "lint": "eslint .",
     "prepare": "husky install",
     "test": "npm run lint && npm run testonly",
@@ -21,11 +25,26 @@
     "prettier": "prettier --write --list-different .",
     "prettier:check": "prettier --check ."
   },
+  "types": "lib/index.d.ts",
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
     "cookie": "^0.4.1",
-    "cookie-parser": "^1.4.5"
+    "cookie-parser": "^1.4.5",
+    "typescript": "^4.3.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/cookie": "^0.4.1",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cookie-signature": "^1.0.3",
+    "@types/jest": "^27.0.1",
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.3",
+    "@types/supertest": "^2.0.11",
+    "babel-jest": "^27.0.6",
     "cookie-signature": "^1.1.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
