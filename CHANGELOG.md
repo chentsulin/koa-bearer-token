@@ -1,3 +1,7 @@
+# 2.0.1 / 2021.08.21
+
+- [fix] fix wrong `files` setting in the `package.json` file
+
 # 2.0.0 / 2021.08.21
 
 - [new] add TypeScript support
