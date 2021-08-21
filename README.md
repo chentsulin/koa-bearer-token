@@ -28,7 +28,7 @@ If a token is found, it will be stored on `ctx.request.token`. If one has been p
 ```js
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
-const bearerToken = require('koa-bearer-token');
+const { bearerToken } = require('koa-bearer-token');
 
 const app = new Koa();
 
@@ -71,12 +71,32 @@ app.use(
 );
 ```
 
+## TypeScript
+
+As of version 2.0.0 we've added initial support for TypeScript.
+
+If you're using your custom `reqKey`, you must do [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) on your own:
+
+```ts
+declare module 'koa' {
+  interface Request {
+    myToken?: string;
+  }
+}
+
+app.use(
+  bearerToken({
+    reqKey: 'myToken',
+  }),
+);
+```
+
 ## Compatibility table
 
 | koa version | koa-bearer-token version |
 | :---------: | :----------------------: |
 |    `<2`     |         `0.x.x`          |
-|     `2`     |         `1.x.x`          |
+|     `2`     |        `>=1.x.x`         |
 
 ## License
 
