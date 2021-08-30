@@ -1,3 +1,7 @@
+# 2.0.2 / 2021.08.30
+
+- [fix] Move dev deps to devDependencies
+
 # 2.0.1 / 2021.08.21
 
 - [fix] fix wrong `files` setting in the `package.json` file
