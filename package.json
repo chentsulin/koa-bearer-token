@@ -1,6 +1,6 @@
 {
   "name": "koa-bearer-token",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Bearer token parser middleware for koa",
   "license": "MIT",
   "author": "C. T. Lin <chentsulin@gmail.com> (https://github.com/chentsulin)",
