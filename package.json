@@ -29,7 +29,7 @@
   },
   "types": "lib/index.d.ts",
   "dependencies": {
-    "cookie": "^0.4.1",
+    "cookie": "^1.0.0",
     "cookie-parser": "^1.4.5"
   },
   "devDependencies": {
